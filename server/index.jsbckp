@@ -1,0 +1,7 @@
+const Librus = require("Librus-api");
+
+var client = new Librus();
+client.authorize("6864731u","Ziemniak3").then(function(){
+	client.calendar.getTimetable().then(data => {console.log(JSON.stringify(data,null,4))
+	});
+});
