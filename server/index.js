@@ -32,6 +32,8 @@ function CheckAuth(req,res,parentfunc){
 				if (data.hours[0] == null)
 					console.log(data.hours)
 					console.log("token expired \n initializing reauth")
+					delete LibrusSessions[req.session.LibrusSession]
+					req.session.destroy();	
 					res.sendFile(__dirname + "/www/index.html");
 			
 			})	
@@ -53,6 +55,16 @@ app.get("/getTimetable",function(req,res){
 		})
 	}
 	
+	CheckAuth(req,res,parentfunc);
+})
+app.get("/getGrades",function(req,res){
+	function parentfunc(req,res) {
+		LibrusSessions[req.session.LibrusSession].info.getGrades().then(data => {
+		console.log(data)
+		res.send(JSON.stringify(data))	
+		})	
+	}
+	console.log("gotGradeCall")
 	CheckAuth(req,res,parentfunc);
 })
 
@@ -92,6 +104,15 @@ LibrusSessionAuth.authorize(req.session.username,req.session.password).then(func
 
 })
 });
+
+app.get("/oceny",function(req,res){
+	console.log("Got Grade Request")
+	function parentfunc(req,res){
+		res.sendFile(__dirname + "/www/oceny.html")	
+	}
+	CheckAuth(req,res,parentfunc);
+})
+
 app.get("/wip",function(req,res){
 console.log("got WIP request")
 	function parentfunc(req,res){

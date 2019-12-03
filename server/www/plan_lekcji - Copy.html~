@@ -179,7 +179,7 @@
 		})
 		$("#GradeButton").click(function(){
 		var loc = $(location)
-		data = loc.attr("protocol") + "//" + loc.attr("host") + "/wip";
+		data = loc.attr("protocol") + "//" + loc.attr("host") + "/oceny";
 		location.replace(data)
 		
 		})
