@@ -94,10 +94,23 @@
 							$("#" + SubName + "Grade" + semester.grades[y].id).click(function(){
 								console.log("debug click")
 								console.log(this.id.split("Grade")[1])
-								$.get("getGradeInfo/" + this.id.split("Grade")[1], function(data){
+								var GradeId = this.id.split("Grade")[1]
+								$.get("getGradeInfo/" + GradeId, function(data){
 									data = JSON.parse(data)
-									console.log(data)	
+									if (data == 0){
+										$.get("getPointGradeInfo/" + GradeId,function(data){
+										data = JSON.parse(data)
+										console.log(data)
+										swal.fire(data.lesson + "\n" + data.category + "\n" + data.comment.toString())
+										})
+									}
+									else{
+									console.log(data)
+									if (data.multiplier == null){
+									data.multiplier = ""
+									}
 									swal.fire(data.lesson + "\n" + data.category + "\n" +"waga: " + data.multiplier + "\n" + data.comment.toString())
+									}
 								})	
 							})
 							console.log("Onclick proc: " + SubName + "Grade" + x.toString() + y.toString())
