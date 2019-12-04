@@ -138,13 +138,13 @@ app.get("/personal",function(req,res){
 
 app.post("/auth", function(req,res){
 	console.log("received post request")
-	console.log(req.body)
-	console.log(req.body.username)
-	console.log(req.body.password)
+	//console.log(req.body)
+	//console.log(req.body.username)
+	//console.log(req.body.password)
 	req.session.username = req.body.username
 	req.session.password = req.body.password
 	res.sendFile(__dirname + "/www/auth.html")
-	console.log(req.session)
+	//console.log(req.session)
 
 });
 app.listen(3000,function(){

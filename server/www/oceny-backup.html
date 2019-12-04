@@ -57,37 +57,25 @@
 				console.log(data)	
 				for (i = 0; i < data.length; i++) {
 					//ogarnianie przedmiotu	
-					var SubNameArr = data[i].name.split(/[.,\/ -]/)
-					var SubName = "" 
-					for (a = 0; a < SubNameArr.length; a++){
-						SubName = SubName + SubNameArr[a]	
-						console.log("SubName: " + SubName)
-					
+					if (ProcessedSubjects[data[i].name] != null){
+					console.log(data[i].name)
+					continue	
 					}
-					if (ProcessedSubjects[data[i].name] == null){
-					 var CurrentSubject = $("#SubjectList").append("<li class='nav-item'" + "id='" + SubName + "li" + "'>" +  "<button type='button' class='btn btn-outline-secondary btn-block'" + " id='" + SubName + "'" + "data-toggle='collapse'" + "data-target='" + "#" + SubName + "col" + "'>" + data[i].name +"</button>" + "</li>")
-					var SubId = "#"	+ SubName + "li"
-					console.log(SubId)
-					var CurrentSubject = $(SubId).append("<div id='" + SubName + "col" + "'" + " class=collapse>" + "</div>")	
+					var CurrentSubject = $("#SubjectList").append("<li class='nav-item'>" +  "<button type='button' class='btn btn-outline-secondary btn-block'" + " id='" + data[i].name + "'" + "data-toggle='collapse'" + "data-target='" + data[i].name + "col" + "'>" + data[i].name +"</button>" + "</li>")
+					
+					var CurrentSubject = $("#SubjectList").append("<div id='" + data[i].name + "col" + "'" + " class=collapse>" + "</div>")
+					
+					console.log("iteration number: " + i)
 					ProcessedSubjects[data[i].name] = true
 					console.log(ProcessedSubjects)
-					}	
-					var SubId = "#" + SubName + "col" 
-					console.log(SubId)
-					var CurrentSubject = $(SubId)	
-					console.log("iteration number: " + i)
-					//ProcessedSubjects[data[i].name] = true
-					
 					var semesterlist = data[i].semester
 					for (x = 0; x < semesterlist.length; x++) {
 						semester = semesterlist[x]
 						//ogarnianie semestrow
-						if (semester.grades.length == 0) {console.log("Grade Length 0"); continue}
+						if (semester.grades.length == 0) {continue}
 						//dodac info o semestrze
 						for (y = 0; y < semester.grades.length; y++) {
 							//jestem w ocenach
-							console.log("Processing Grade")
-							var CurrentGrade = $(CurrentSubject).append("<li class='nav-item'>" + "<button type='button' class='btn btn-outline-secondary btn-block' id=''" + SubName + "Grade" + x + y + "'" + "data-toggle='collapse'" + "data-target='" + SubName + "Grade" + x + y + "col" + "'>" + semester.grades[y].value + "</button>" + "</li>")	
 							
 						}		
 					}	
