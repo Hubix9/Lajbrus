@@ -15,7 +15,16 @@
 
 
 
-<ul class="list-group" style="font-size: 12px" id="SubjectList"></ul>
+<ul class="list-group" style="font-size: 12px" id="SubjectList">
+		<li class="nav-item">
+			<button type="button" class="btn btn-outline-secondary btn-block" id="mon" data-toggle="collapse" data-target="#moncol">
+				<img src="https://img.icons8.com/metro/26/000000/monday.png" style="position: absolute;left:10px"> Poniedzialek
+			</button>
+			<div id="moncol" class="collapse">
+				<ul class="list-group-item" style="overflow:hidden; overflow-y:scroll;"></ul>
+			</div>
+		</li>	
+</ul>
 
 
 <nav class="navbar navbar-expand bg-light justify-content-center" style="bottom: 0; position: fixed; width: 100%;" id="bottombar">
@@ -41,7 +50,6 @@
 <script>
 	var ProcessedGradesIds = []
 	var ProcessedSubjects = {}
-	var ProcessedSemester = {}
 	function loadGrades(){
 			console.log("loading Grades")	
 			$.get("getGrades",function(data){
@@ -76,17 +84,13 @@
 						//ogarnianie semestrow
 						if (semester.grades.length == 0) {console.log("Grade Length 0"); continue}
 						//dodac info o semestrze
-						if (ProcessedSemester[SubName + "semester" + x] == null) {
-						ProcessedSemester[SubName + "semester" + x] = true
-						$(CurrentSubject).append("<div class='card'><div class='card-header'>" + "semestr" + (x + 1) + "</div><div class='card-body' id='" + SubName + "semester" + x + "'></div></div>")
-						}
-						var CurrentSemester = $("#" + SubName + "semester" + x)
+						$(CurrentSubject).append("<div class='card'>" + "semestr" + (x + 1))
 						for (y = 0; y < semester.grades.length; y++) {
 							//jestem w ocenach
 							console.log("Processing Grade")
 							if (ProcessedGradesIds[semester.grades[y].id.toString()] != null) { console.log("grade already processed");continue;}	
 							//var CurrentGrade = $(CurrentSubject).append("<li class='nav-item'>" + "<button type='button' class='btn btn-outline-secondary well' id=''" + SubName + "Grade" + x + y + "'" + "data-toggle='collapse'" + "data-target='" + SubName + "Grade" + x + y + "col" + "'>" + "<b>" + semester.grades[y].value + "</b>" + "</button>" + "</li>")	
-							var CurrentGrade = $(CurrentSemester).append("<button type='button' class='btn btn-outline-secondary well' id=''" + SubName + "Grade" + x + y + "'" + "data-toggle='collapse'" + "data-target='" + SubName + "Grade" + x + y + "col" + "'>" + "<b>" + semester.grades[y].value + "</b>" + "</button>")	
+							var CurrentGrade = $(CurrentSubject).append("<button type='button' class='btn btn-outline-secondary well' id=''" + SubName + "Grade" + x + y + "'" + "data-toggle='collapse'" + "data-target='" + SubName + "Grade" + x + y + "col" + "'>" + "<b>" + semester.grades[y].value + "</b>" + "</button>")	
 							ProcessedGradesIds[semester.grades[y].id.toString()] = true	
 						}		
 					}	
