@@ -1,6 +1,6 @@
 const express = require("express");
 const bodyparser = require("body-parser");
-const Librus = require("Librus-api");
+const Librus = require("librus-api");
 const session = require("express-session");
 const cookieparser = require("cookie-parser");
 const uuid = require("uuid/v1")
