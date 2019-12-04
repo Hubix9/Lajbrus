@@ -67,6 +67,18 @@ app.get("/getGrades",function(req,res){
 	console.log("gotGradeCall")
 	CheckAuth(req,res,parentfunc);
 })
+app.get("/getGradeInfo*",function(req,res){
+	function parentfunc(req,res){
+		console.log(req.url) 
+		var GradeIdToProcess = req.url.split("/")[2]
+		console.log(GradeIdToProcess)
+		LibrusSessions[req.session.LibrusSession].info.getGrade(GradeIdToProcess).then(data => {
+		console.log(data)
+		res.send(JSON.stringify(data))	
+		})
+	}
+	CheckAuth(req,res,parentfunc)
+})
 
 
 app.get("/plan_lekcji",function(req,res){

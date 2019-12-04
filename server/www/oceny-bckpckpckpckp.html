@@ -10,8 +10,7 @@
 <!-- Latest compiled JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
-
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <body>
@@ -81,26 +80,17 @@
 						//dodac info o semestrze
 						if (ProcessedSemester[SubName + "semester" + x] == null) {
 						ProcessedSemester[SubName + "semester" + x] = true
-						$(CurrentSubject).append("<div class='card'><div class='card-header h5'>" + "semestr " + (x + 1) + "</div><div class='card-body' id='" + SubName + "semester" + x + "'></div></div>")
+						$(CurrentSubject).append("<div class='card'><div class='card-header'>" + "semestr" + (x + 1) + "</div><div class='card-body' id='" + SubName + "semester" + x + "'></div></div>")
 						}
 						var CurrentSemester = $("#" + SubName + "semester" + x)
 						for (y = 0; y < semester.grades.length; y++) {
 							//jestem w ocenach
 							console.log("Processing Grade")
 							if (ProcessedGradesIds[semester.grades[y].id.toString()] != null) { console.log("grade already processed");continue;}	
-							//var CurrentGrade = $(CurrentSubject).append("<li class='nav-item'>" + "<button type='button' class='btn btn-outline-secondary well' id='" + SubName + "Grade" + x + y + "'" + "data-toggle='collapse'" + "data-target='" + SubName + "Grade" + x + y + "col" + "'>" + "<b>" + semester.grades[y].value + "</b>" + "</button>" + "</li>")	
-							var CurrentGrade = $(CurrentSemester).append("<button type='button' class='btn btn-outline-secondary well' id='" + SubName + "Grade" + semester.grades[y].id + "'" + " data-toggle='collapse'" + "data-target='" + SubName + "Grade" + semester.grades[y].id + "col" + "'>" + "<b>" + semester.grades[y].value + "</b>" + "</button>")	
+							//var CurrentGrade = $(CurrentSubject).append("<li class='nav-item'>" + "<button type='button' class='btn btn-outline-secondary well' id=''" + SubName + "Grade" + x + y + "'" + "data-toggle='collapse'" + "data-target='" + SubName + "Grade" + x + y + "col" + "'>" + "<b>" + semester.grades[y].value + "</b>" + "</button>" + "</li>")	
+							var CurrentGrade = $(CurrentSemester).append("<button type='button' class='btn btn-outline-secondary well' id=''" + SubName + "Grade" + x + y + "'" + "data-toggle='collapse'" + "data-target='" + SubName + "Grade" + x + y + "col" + "'>" + "<b>" + semester.grades[y].value + "</b>" + "</button>")	
 							ProcessedGradesIds[semester.grades[y].id.toString()] = true	
-							$("#" + SubName + "Grade" + semester.grades[y].id).click(function(){
-								console.log("debug click")
-								console.log(this.id.split("Grade")[1])
-								$.get("getGradeInfo/" + this.id.split("Grade")[1], function(data){
-									data = JSON.parse(data)
-									console.log(data)	
-									swal.fire(data.lesson + "\n" + data.category + "\n" +"waga: " + data.multiplier + "\n" + data.comment.toString())
-								})	
-							})
-							console.log("Onclick proc: " + SubName + "Grade" + x.toString() + y.toString())
+
 						}		
 					}	
 				}
