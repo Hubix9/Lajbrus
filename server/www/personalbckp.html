@@ -11,12 +11,10 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<div class="card">
-	<div class="card-body" id="luckynumber" >	
-	</div>
-</div>
 
-<button type="button" class="btn btn-outline-secondary" id="LogoutButton" style="display:block;margin:auto;">Wyloguj</button>
+<img src="img/101.jpg" class="img-fluid mx-auto d-block" style="position:absolute;top:10%;border-radius: 30px">
+
+<button type="button" class="btn btn-outline-secondary" id="LogoutButton">Wyloguj</button>
 
 <nav class="navbar navbar-expand bg-light justify-content-center" style="bottom: 0; position: fixed; width: 100%;" id="bottombar">
 	<ul class="navbar-nav">
@@ -38,12 +36,7 @@
 	</ul>
 </nav>
 </body>
-<script>	
-	function loadLuckyNumber() {
-		$.get("getLuckyNumber",function(data){
-		$("#luckynumber").append("<p>Sczesliwy numerek: " + data + "</p>")
-		})		
-	}
+<script>
 	function loadTimetable(){
 		$("#TimetableButton").click(function(){
 		var loc = $(location)
@@ -53,7 +46,7 @@
 		})
 		$("#GradeButton").click(function(){
 		var loc = $(location)
-		data = loc.attr("protocol") + "//" + loc.attr("host") + "/oceny";
+		data = loc.attr("protocol") + "//" + loc.attr("host") + "/wip";
 		location.replace(data)
 		
 		})
@@ -74,7 +67,6 @@
 	
 	}
 	$(document).ready(loadTimetable())
-	$(document).ready(loadLuckyNumber())
 	$(window).resize(function () { 
     		$('body').css('padding-bottom', parseInt($('#bottombar').css("height"))+10);
 

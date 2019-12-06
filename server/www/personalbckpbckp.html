@@ -11,12 +11,10 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<div class="card">
-	<div class="card-body" id="luckynumber" >	
-	</div>
-</div>
 
-<button type="button" class="btn btn-outline-secondary" id="LogoutButton" style="display:block;margin:auto;">Wyloguj</button>
+<img src="img/101.jpg" class="img-fluid mx-auto d-block" style="position:absolute;top:10%;border-radius: 30px">
+
+<button type="button" class="btn btn-outline-secondary" id="LogoutButton">Wyloguj</button>
 
 <nav class="navbar navbar-expand bg-light justify-content-center" style="bottom: 0; position: fixed; width: 100%;" id="bottombar">
 	<ul class="navbar-nav">
@@ -38,11 +36,11 @@
 	</ul>
 </nav>
 </body>
-<script>	
-	function loadLuckyNumber() {
+<script>
+	function getLuckyNumber() {
 		$.get("getLuckyNumber",function(data){
-		$("#luckynumber").append("<p>Sczesliwy numerek: " + data + "</p>")
-		})		
+		console.log(data)	
+		})
 	}
 	function loadTimetable(){
 		$("#TimetableButton").click(function(){
@@ -74,7 +72,7 @@
 	
 	}
 	$(document).ready(loadTimetable())
-	$(document).ready(loadLuckyNumber())
+	$(document).ready(getLuckyNumber())
 	$(window).resize(function () { 
     		$('body').css('padding-bottom', parseInt($('#bottombar').css("height"))+10);
 

@@ -91,6 +91,15 @@ app.get("/getPointGradeInfo*",function(req,res){
 	}
 	CheckAuth(req,res,parentfunc)
 })
+app.get("/getLuckyNumber",function(req,res){
+	function parentfunc(req,res){
+		LibrusSessions[req.session.LibrusSession].info.getLuckyNumber().then(data => {
+		res.send(JSON.stringify(data))		
+		})
+	console.log("got lucky number request")	
+	}
+	CheckAuth(req,res,parentfunc)
+})
 
 app.get("/plan_lekcji",function(req,res){
 console.log("got pln req")
