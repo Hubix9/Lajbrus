@@ -112,6 +112,8 @@ LibrusSessionAuth.authorize(req.session.username,req.session.password).then(func
 	if (data.hours[0] != null){
 		console.log(data.hours)
 		console.log("auth success")
+		delete req.session.username
+		delete req.session.password
 		req.session.LibrusSession = uuid();
 		LibrusSessions[req.session.LibrusSession] = LibrusSessionAuth
 		req.session.LastAction = Math.floor(new Date() / 1000)
@@ -130,7 +132,7 @@ LibrusSessionAuth.authorize(req.session.username,req.session.password).then(func
 	else{
 		console.log("user already authorized")	
 		console.log(LibrusSessions)
-		res.sendFile(__dirname + "/www/plan_lekcji - Copy.html")
+		res.sendFile(__dirname + "/www/plan_lekcji.html")
 	}
 	
 
@@ -169,10 +171,7 @@ app.get("/personal",function(req,res){
 })
 
 app.post("/auth", function(req,res){
-	console.log("received post request")
-	//console.log(req.body)
-	//console.log(req.body.username)
-	//console.log(req.body.password)
+	console.log("received post request")	
 	req.session.username = req.body.username
 	req.session.password = req.body.password
 	res.sendFile(__dirname + "/www/auth.html")
@@ -183,4 +182,4 @@ app.listen(3000,function(){
 	console.log("listening on port 3000")
 });
 
-var client = new Librus();
+
