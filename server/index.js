@@ -117,7 +117,7 @@ LibrusSessionAuth.authorize(req.session.username,req.session.password).then(func
 		req.session.LastAction = Math.floor(new Date() / 1000)
 		console.log("session last action: " + req.session.LastAction)
 		console.log(LibrusSessions)
-		res.sendFile(__dirname + "/www/plan_lekcji - Copy.html")
+		res.sendFile(__dirname + "/www/plan_lekcji.html")
 	}
 	else {
 		console.log("auth fail")
