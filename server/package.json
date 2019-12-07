@@ -7,10 +7,9 @@
     "body-parser": "^1.19.0",
     "cheerio": "^0.22.0",
     "cookie-parser": "^1.4.4",
-    "cryptico": "^1.0.2",
     "express": "^4.17.1",
     "express-session": "^1.17.0",
-    "librus-api": "^2.3.1",
+    "librus-api": "^2.4.1",
     "lodash": "^4.17.15",
     "uuid": "^3.3.3"
   },
@@ -19,5 +18,5 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
-  "license": "ISC"
+  "license": "GNU-GPLV3"
 }
