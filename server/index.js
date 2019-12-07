@@ -102,7 +102,6 @@ LibrusSessionAuth.authorize(req.session.username,req.session.password).then(func
 	}
 	
 
-	})
 	}
 	else{
 		res.sendFile(__dirname + "/www/plan_lekcji.html")
