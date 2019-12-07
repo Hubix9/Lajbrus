@@ -1,4 +1,4 @@
-jbrus synergia
+# Librus synergia
 Web app for Librus Synergia with improved support for mobile devices
 
 ### How to run
