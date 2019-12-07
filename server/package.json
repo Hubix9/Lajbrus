@@ -17,6 +17,6 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
-  "license": "GNU-GPLV3"
+  "author": "Hubix9",
+  "license": "GPL-3.0"
 }
