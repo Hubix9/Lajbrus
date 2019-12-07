@@ -3,7 +3,7 @@ const bodyparser = require("body-parser");
 const Librus = require("librus-api");
 const session = require("express-session");
 const cookieparser = require("cookie-parser");
-const uuid = require("uuid/v1")
+const uuid = require("uuid/v1");
 
 var LibrusSessions = {}
 
@@ -12,7 +12,7 @@ var app = express();
 app.use(bodyparser.urlencoded({extended:true}));
 app.use(bodyparser.json());
 app.use(cookieparser());
-app.use(session({secret: "LUL", resave: "false", saveUninitialized: "false"}))
+app.use(session({secret: process.env.SESSION_SECRET, resave: "false", saveUninitialized: "false"}))
 app.use(express.static("www"));
 
 app.get("/",function(req,res){
