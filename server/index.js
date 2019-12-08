@@ -111,7 +111,9 @@ LibrusSessionAuth.authorize(req.session.username,req.session.password).then(func
 
 })
 });
-
+app.get("/eula",function(req,res){
+	res.sendFile(__dirname + "/www/eula.html")
+})
 app.get("/oceny",function(req,res){
 	function parentfunc(req,res){
 		res.sendFile(__dirname + "/www/oceny.html")	
