@@ -100,6 +100,8 @@ LibrusSessionAuth.authorize(req.session.username,req.session.password).then(func
 	}
 	else {
 		res.sendStatus(401)
+		delete req.session.username
+		delete req.session.password
 	}
 	
 	})
