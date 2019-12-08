@@ -89,6 +89,7 @@ var LibrusSessionAuth = new Librus();
 
 LibrusSessionAuth.authorize(req.session.username,req.session.password).then(function() {
 	if (req.session.LibrusSession == null){
+	LibrusSessionAuth.calendar.getTimetable().then(data => {console.log(data);
 	if (data.hours[0] != null){
 		delete req.session.username
 		delete req.session.password
@@ -101,7 +102,7 @@ LibrusSessionAuth.authorize(req.session.username,req.session.password).then(func
 		res.sendStatus(401)
 	}
 	
-
+	})
 	}
 	else{
 		res.sendFile(__dirname + "/www/plan_lekcji.html")
