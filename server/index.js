@@ -99,9 +99,10 @@ LibrusSessionAuth.authorize(req.session.username,req.session.password).then(func
 		res.sendFile(__dirname + "/www/plan_lekcji.html")
 	}
 	else {
-		res.sendStatus(401)
 		delete req.session.username
 		delete req.session.password
+		req.session.destroy();
+		res.sendStatus(401)
 	}
 	
 	})
