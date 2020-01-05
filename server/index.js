@@ -12,7 +12,7 @@ var app = express();
 app.use(bodyparser.urlencoded({extended:true}));
 app.use(bodyparser.json());
 app.use(cookieparser());
-app.use(session({secret: process.env.SESSION_SECRET, resave: "false", saveUninitialized: "false"}))
+app.use(session({secret: process.env.SESSION_SECRET, resave: "false", saveUninitialized: "false"}));
 app.use(express.static("www"));
 
 app.get("/",function(req,res){
@@ -69,7 +69,7 @@ app.get("/getGradeInfo*",function(req,res){
 })
 app.get("/getPointGradeInfo*",function(req,res){
 	function parentfunc(req,res){
-		var GradeIdToProcess = req.url.split("/")[2]
+		var GradeIdToProcess = req.url.split("/")[2];
 		LibrusSessions[req.session.LibrusSession].info.getPointGrade(GradeIdToProcess).then(data => {
 		res.send(JSON.stringify(data))	
 		})
@@ -79,7 +79,7 @@ app.get("/getPointGradeInfo*",function(req,res){
 app.get("/getLuckyNumber",function(req,res){
 	function parentfunc(req,res){
 		LibrusSessions[req.session.LibrusSession].info.getLuckyNumber().then(data => {
-		res.send(JSON.stringify(data))		
+		res.send(JSON.stringify(data));		
 		})
 	}
 	CheckAuth(req,res,parentfunc)
@@ -97,63 +97,63 @@ LibrusSessionAuth.authorize(req.session.username,req.session.password).then(func
 		req.session.LibrusSession = uuid();
 		LibrusSessions[req.session.LibrusSession] = LibrusSessionAuth
 		req.session.LastAction = Math.floor(new Date() / 1000)
-		res.sendFile(__dirname + "/www/plan_lekcji.html")
+		res.sendFile(__dirname + "/www/plan_lekcji.html");
 	}
 	else {
-		delete req.session.username
-		delete req.session.password
+		delete req.session.username;
+		delete req.session.password;
 		req.session.destroy();
-		res.sendStatus(401)
+		res.sendStatus(401);
 	}
 	
 	})
 	}
 	else{
-		res.sendFile(__dirname + "/www/plan_lekcji.html")
+		res.sendFile(__dirname + "/www/plan_lekcji.html");
 	}
 	
 
 })
 });
 app.get("/eula",function(req,res){
-	res.sendFile(__dirname + "/www/eula.html")
+	res.sendFile(__dirname + "/www/eula.html");
 })
 app.get("/oceny",function(req,res){
 	function parentfunc(req,res){
-		res.sendFile(__dirname + "/www/oceny.html")	
+		res.sendFile(__dirname + "/www/oceny.html");	
 	}
 	CheckAuth(req,res,parentfunc);
 })
 
 app.get("/wip",function(req,res){
 	function parentfunc(req,res){
-		res.sendFile(__dirname + "/www/wip.html")
+		res.sendFile(__dirname + "/www/wip.html");
 	}
 
 	CheckAuth(req,res,parentfunc);
 })
 app.get("/logout",function(req,res){
-	delete LibrusSessions[req.session.LibrusSession]
+	delete LibrusSessions[req.session.LibrusSession];
 	req.session.destroy();
-	res.sendFile(__dirname + "/www/index.html")
+	res.sendFile(__dirname + "/www/index.html");
 
 })
 app.get("/personal",function(req,res){
 	function parentfunc(req,res){
-		res.sendFile(__dirname + "/www/personal.html")
+		res.sendFile(__dirname + "/www/personal.html");
 	}
 	CheckAuth(req,res,parentfunc);
 	
 })
 
 app.post("/auth", function(req,res){
-	req.session.username = req.body.username
-	req.session.password = req.body.password
-	res.sendFile(__dirname + "/www/auth.html")
+	req.session.username = req.body.username;
+	req.session.password = req.body.password;
+	res.sendFile(__dirname + "/www/auth.html");
 
 });
 app.listen(3000,function(){
-	console.log("listening on port: 3000")
+	console.log("listening on port: 3000");
 });
 
 
