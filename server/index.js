@@ -53,19 +53,19 @@ app.get("/getTimetable",function(req,res){
 app.get("/getGrades",function(req,res){
 	function parentfunc(req,res) {
 		LibrusSessions[req.session.LibrusSession].info.getGrades().then(data => {
-		res.send(JSON.stringify(data))	
+		res.send(JSON.stringify(data));
 		})	
 	}
 	CheckAuth(req,res,parentfunc);
 })
 app.get("/getGradeInfo*",function(req,res){
 	function parentfunc(req,res){
-		var GradeIdToProcess = req.url.split("/")[2]
+		var GradeIdToProcess = req.url.split("/")[2];
 		LibrusSessions[req.session.LibrusSession].info.getGrade(GradeIdToProcess).then(data => {
 		res.send(JSON.stringify(data));
 		})
 	}
-	CheckAuth(req,res,parentfunc)
+	CheckAuth(req,res,parentfunc);
 })
 app.get("/getPointGradeInfo*",function(req,res){
 	function parentfunc(req,res){
@@ -131,7 +131,7 @@ app.get("/wip",function(req,res){
 	}
 
 	CheckAuth(req,res,parentfunc);
-})
+});
 app.get("/logout",function(req,res){
 	delete LibrusSessions[req.session.LibrusSession];
 	req.session.destroy();
