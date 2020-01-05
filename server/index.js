@@ -5,7 +5,7 @@ const session = require("express-session");
 const cookieparser = require("cookie-parser");
 const uuid = require("uuid/v1");
 
-var LibrusSessions = {}
+var LibrusSessions = {};
 
 
 var app = express();
@@ -35,8 +35,8 @@ function CheckAuth(req,res,parentfunc){
 			})	
 		}
 		else {
-			parentfunc(req,res)
-			req.session.LastAction = Math.floor(new Date() / 1000)
+			parentfunc(req,res);
+			req.session.LastAction = Math.floor(new Date() / 1000);
 		
 		}
 	}
@@ -62,7 +62,7 @@ app.get("/getGradeInfo*",function(req,res){
 	function parentfunc(req,res){
 		var GradeIdToProcess = req.url.split("/")[2]
 		LibrusSessions[req.session.LibrusSession].info.getGrade(GradeIdToProcess).then(data => {
-		res.send(JSON.stringify(data))	
+		res.send(JSON.stringify(data));
 		})
 	}
 	CheckAuth(req,res,parentfunc)
@@ -74,7 +74,7 @@ app.get("/getPointGradeInfo*",function(req,res){
 		res.send(JSON.stringify(data));	
 		})
 	}
-	CheckAuth(req,res,parentfunc)
+	CheckAuth(req,res,parentfunc);
 })
 app.get("/getLuckyNumber",function(req,res){
 	function parentfunc(req,res){
@@ -137,7 +137,7 @@ app.get("/logout",function(req,res){
 	req.session.destroy();
 	res.sendFile(__dirname + "/www/index.html");
 
-})
+});
 app.get("/personal",function(req,res){
 	function parentfunc(req,res){
 		res.sendFile(__dirname + "/www/personal.html");
