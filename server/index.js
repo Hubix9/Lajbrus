@@ -26,10 +26,11 @@ function CheckAuth(req,res,parentfunc){
 	else {
 		if (Math.floor(new Date() / 1000) - req.session.LastAction >= 600) {
 			LibrusSessions[req.session.LibrusSession].calendar.getTimetable().then(data => {
-				if (data.hours[0] == null)
+				if (data.hours[0] == null) {
 					delete LibrusSessions[req.session.LibrusSession]
 					req.session.destroy();	
 					res.sendFile(__dirname + "/www/index.html");
+				}
 			
 			})	
 		}
