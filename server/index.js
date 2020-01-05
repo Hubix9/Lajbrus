@@ -44,7 +44,7 @@ function CheckAuth(req,res,parentfunc){
 app.get("/getTimetable",function(req,res){
 	function parentfunc(req,res) {
 		LibrusSessions[req.session.LibrusSession].calendar.getTimetable().then(data =>{
-		res.send(JSON.stringify(data))
+		res.send(JSON.stringify(data));
 		})
 	}
 	
@@ -123,7 +123,7 @@ app.get("/oceny",function(req,res){
 		res.sendFile(__dirname + "/www/oceny.html");	
 	}
 	CheckAuth(req,res,parentfunc);
-})
+});
 
 app.get("/wip",function(req,res){
 	function parentfunc(req,res){
