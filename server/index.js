@@ -21,13 +21,13 @@ app.get("/",function(req,res){
 
 function CheckAuth(req,res,parentfunc){	
 	if (req.session.LibrusSession == null){
-		res.sendFile(__dirname + "/www/index.html")	
+		res.sendFile(__dirname + "/www/index.html");	
 	}
 	else {
 		if (Math.floor(new Date() / 1000) - req.session.LastAction >= 600) {
 			LibrusSessions[req.session.LibrusSession].calendar.getTimetable().then(data => {
 				if (data.hours[0] == null) {
-					delete LibrusSessions[req.session.LibrusSession]
+					delete LibrusSessions[req.session.LibrusSession];
 					req.session.destroy();	
 					res.sendFile(__dirname + "/www/index.html");
 				}
@@ -71,7 +71,7 @@ app.get("/getPointGradeInfo*",function(req,res){
 	function parentfunc(req,res){
 		var GradeIdToProcess = req.url.split("/")[2];
 		LibrusSessions[req.session.LibrusSession].info.getPointGrade(GradeIdToProcess).then(data => {
-		res.send(JSON.stringify(data))	
+		res.send(JSON.stringify(data));	
 		})
 	}
 	CheckAuth(req,res,parentfunc)
@@ -82,7 +82,7 @@ app.get("/getLuckyNumber",function(req,res){
 		res.send(JSON.stringify(data));		
 		})
 	}
-	CheckAuth(req,res,parentfunc)
+	CheckAuth(req,res,parentfunc);
 })
 
 app.get("/plan_lekcji",function(req,res){
@@ -92,11 +92,11 @@ LibrusSessionAuth.authorize(req.session.username,req.session.password).then(func
 	if (req.session.LibrusSession == null){
 	LibrusSessionAuth.calendar.getTimetable().then(data => {console.log(data);
 	if (data.hours[0] != null){
-		delete req.session.username
-		delete req.session.password
+		delete req.session.username;
+		delete req.session.password;
 		req.session.LibrusSession = uuid();
-		LibrusSessions[req.session.LibrusSession] = LibrusSessionAuth
-		req.session.LastAction = Math.floor(new Date() / 1000)
+		LibrusSessions[req.session.LibrusSession] = LibrusSessionAuth;
+		req.session.LastAction = Math.floor(new Date() / 1000);
 		res.sendFile(__dirname + "/www/plan_lekcji.html");
 	}
 	else {
@@ -144,7 +144,7 @@ app.get("/personal",function(req,res){
 	}
 	CheckAuth(req,res,parentfunc);
 	
-})
+});
 
 app.post("/auth", function(req,res){
 	req.session.username = req.body.username;
