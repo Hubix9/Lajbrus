@@ -31,6 +31,10 @@ function CheckAuth(req,res,parentfunc){
 					req.session.destroy();	
 					res.sendFile(__dirname + "/www/index.html");
 				}
+				else {
+					parentfunc(req,res);
+					req.session.LastAction = Math.floor(new Date() / 1000);
+				}
 			
 			})	
 		}
