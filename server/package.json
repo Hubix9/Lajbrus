@@ -10,7 +10,7 @@
     "express": "^5.0.0",
     "express-session": "^1.17.0",
     "librus-api": "^2.8.2",
-    "lodash": "^4.17.21",
+    "lodash": "^4.17.23",
     "uuid": "^3.3.3"
   },
   "repository": {
